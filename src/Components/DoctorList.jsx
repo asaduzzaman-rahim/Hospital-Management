@@ -1,26 +1,54 @@
-import React from 'react'
+import React, { useEffect, useContext, useState } from 'react'
+import { counterContext } from '../MainContext'
 
 import DoctorsCart from './DoctorsCart'
 import Flex from "./Flex"
 
-import DoctorPhoto01 from "../assets/Doctor Photo (1).png"
+import HeadingPart from './HeadingPart'
 
 
-const TopDoctorBook = () => {
+const TopDoctorBook = ({doctorData}) => {
+      const { allDoctors } = useContext(counterContext);
+      
+      const [docFilterSpeci, setDocFilterSpeci] = useState([])
+
+  useEffect(()=>{
+    const FilterDoc = allDoctors.filter((items)=> items.speciality == doctorData.speciality)
+    setDocFilterSpeci(FilterDoc)
+    },[])
+    
+    console.log(docFilterSpeci);
+
+
+
   return (
     <>
 
-            <div className="text-center">
-                <div className="gap-[20px] !flex-wrap justify-center lg:justify-start pb-[60px]  text-start">
-                    <DoctorsCart 
-                        DoctorPhoto={DoctorPhoto01} 
-                        Active="Available" 
-                        DoctorName="Dr. Richard James" 
-                        DoctorDesignation="General physician" 
+            <div className="">
+                <div>
+                   <HeadingPart 
+                      HeadingLine="Find by Speciality" 
+                      DetailsLine="Simply browse through our extensive list of trusted doctors, schedule your appointment hassle-free." 
                     />
-                   
+                </div>
+                <Flex className="gap-[20px] !flex-wrap justify-center lg:justify-start pt-[30px]  text-start">
                     
-                </div>  
+                    {
+                     docFilterSpeci.map((items,index)=>{
+                            return(
+                                <DoctorsCart key={index} 
+                                    id={items._id}
+                                    DoctorPhoto={items.image}
+                                    DoctorName={items.name}
+                                    DoctorDesignation={items.speciality}
+                                    Active="Available"
+                                />
+                            )
+                        }) 
+                    }
+
+                </Flex>  
+
             </div>
 
     </>

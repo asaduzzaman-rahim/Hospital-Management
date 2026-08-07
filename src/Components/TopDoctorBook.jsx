@@ -20,7 +20,7 @@ const TopDoctorBook = () => {
                 HeadingLine="Top Doctors to Book" 
                 DetailsLine="Simply browse through our extensive list of trusted doctors." />   
             <div className="text-center">
-                <Flex className="gap-[20px] !flex-wrap justify-center pb-[60px] pt-[40px] text-start">
+                <Flex className="gap-x-5 gap-y-7 !flex-wrap justify-center pb-[60px] pt-[40px] text-start">
                     {
                         allDoctors.slice(0,10).map((items, index)=>{
                              return(

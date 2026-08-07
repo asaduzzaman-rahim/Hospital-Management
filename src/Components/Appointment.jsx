@@ -45,7 +45,7 @@ const Appointment = () => {
                     </div>
                 </Flex>    
                 <div className=''>
-                    {/* <DoctorList/> */}
+                    <DoctorList doctorData={doctorData} />
                 </div>  
             </div>  
         </Container>    
